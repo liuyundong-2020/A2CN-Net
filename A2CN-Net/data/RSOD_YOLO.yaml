@@ -1,0 +1,12 @@
+
+
+
+# train and val datasets (image directory or *.txt file with image paths)
+train: /raid/name/liuyundong/RSOD_YOLO1/images/train
+val: /raid/name/liuyundong/RSOD_YOLO1/images/val
+
+# number of classes
+nc: 4
+
+# class names
+names: ['aircraft', 'oiltank', 'overpass', 'playground']
