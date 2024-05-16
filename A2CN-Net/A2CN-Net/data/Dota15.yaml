@@ -1,0 +1,13 @@
+
+train: /DOTA1.0HBBVOCdevkit/VOC2007/train.txt  # train images (relative to 'path')  6471 images
+val: /DOTA1.0HBBVOCdevkit/VOC2007/val.txt  # val images (relative to 'path')  548 images
+test:/DOTA1.0HBBVOCdevkit/VOC2007/test.txt  # test images (optional)  1610 images
+# number of classes
+nc: 15
+
+# class names
+
+names: [ 'small-vehicle', 'large-vehicle', 'plane', 'storage-tank',
+         'ship', 'harbor', 'ground-track-field', 'soccer-ball-field', 'tennis-court',
+         'swimming-pool', 'baseball-diamond', 'roundabout', 'basketball-court',
+         'bridge', 'helicopter' ]
