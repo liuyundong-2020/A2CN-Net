@@ -1,0 +1,31 @@
+nc: 20  # number of classes
+depth_multiple: 1.0  # model depth multiple
+width_multiple: 1.0  # layer channel multiple
+anchors:
+  - [10,13, 16,30, 33,23]  
+  - [30,61, 62,45, 59,119]  
+  - [116,90, 156,198, 373,326]  
+
+backbone:
+  [[-1, 1, nn.Conv2d, [64, 7, 2, 3]],        
+   [-1, 1, nn.BatchNorm2d, [None]],          
+   [-1, 1, nn.ReLU, [True]],                 
+   [-1, 1, nn.MaxPool2d, [3, 2, 1]],         
+   [ -1, 3, CFFC, [ 64, 1, 1, 64, True , True ] ],  
+   [ -1, 4, CFFC, [ 128, 2, 1, 64, True , True  ] ], 
+   [ -1, 6,CFFC, [ 256, 2, 1, 64, True , True ] ], 
+   [ -1, 3, CFFC, [ 512, 2, 1, 64, True , True  ] ], 
+  ]
+
+head:
+  [
+    [ -4, 1, GCIE, [ 64 ] ],
+    [ -4, 1, GCIE, [ 128 ] ],
+    [ -4, 1, GCIE, [ 256 ] ],
+    [ -4, 1, GCIE, [ 512 ] ],
+    [ [ -2, -1 ], 1, A2CN, [ 512 ] ],
+    [ [ -4, -3 ], 1, A2CN, [ 256 ] ],
+    [ [ -6, -5 ], 1,A2CN, [ 128 ] ],
+
+   [[14, 13, 12], 1, Detect, [nc, anchors]], 
+  ]
